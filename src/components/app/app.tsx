@@ -15,8 +15,11 @@ export const App = () => {
     <main className={styles.main}>
       <h1 className={styles.main__title}>Search for books</h1>
       <input type="search" />
-      <datalist>
-        <option value="all"></option>
+      <input list="categories" />
+      <datalist id="categories">
+        {categories.map((category) => (
+          <option key={category} value={category}></option>
+        ))}
       </datalist>
     </main>
   );
