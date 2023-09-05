@@ -1,13 +1,15 @@
+@use '../../variables' as var;
+
 .header {
   min-width: 320px;
   background: linear-gradient(rgba(0 0 0 / 0.7), rgba(0 0 0 / 0.7)),
-    url('../../images/background.jpg');
+    var.$bg-header;
   background-size: cover;
   text-align: center;
-  padding-block: 20px;
+  padding: 20px 10px;
+  color: var.$text-secondary;
 
   &__title {
-    color: white;
     margin: 0 0 20px;
   }
 
@@ -19,5 +21,6 @@
     display: flex;
     justify-content: center;
     gap: 20px;
+    flex-wrap: wrap;
   }
 }

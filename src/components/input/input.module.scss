@@ -1,0 +1,17 @@
+@use '../../variables' as var;
+
+.inputBlock {
+  position: relative;
+
+  &__input {
+    @include var.text-base;
+
+    outline: none;
+    padding-right: 40px;
+  }
+
+  &__loupe {
+    position: absolute;
+    width: 20px;
+  }
+}

@@ -1,0 +1,16 @@
+@use '../../variables' as var;
+
+.selectBlock {
+  @include var.text-medium;
+
+  color: var.$text-secondary;
+
+  &__select {
+    border-radius: var.$input-radius;
+    outline: none;
+    margin-left: 10px;
+    min-width: 150px;
+    padding: 5px;
+    color: var.$text-additional;
+  }
+}

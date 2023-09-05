@@ -1,0 +1,52 @@
+// text colors
+$text-primary: #000;
+$text-secondary: #fff;
+$text-additional: #616161;
+
+// bacrground colors
+$bg-book: #f3f2f1;
+$bg-main: #fff;
+$bg-header: url('../../images/background.jpg');
+
+// fonts
+$font-family-default: 'Montserrat', sans-serif;
+
+// other
+$input-radius: 4px;
+
+// mixins
+@mixin h1 {
+  font-family: $font-family-default;
+  font-size: 24px;
+  font-weight: 600;
+}
+
+@mixin h2 {
+  font-family: $font-family-default;
+  font-size: 20px;
+  font-weight: 500;
+}
+
+@mixin text-base {
+  font-family: $font-family-default;
+  font-size: 16px;
+  font-weight: 400;
+}
+
+@mixin text-medium {
+  font-family: $font-family-default;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+@mixin text-bold {
+  font-family: $font-family-default;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+@mixin text-small {
+  font-family: $font-family-default;
+  font-size: 13px;
+  font-weight: 300;
+}

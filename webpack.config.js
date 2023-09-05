@@ -13,6 +13,7 @@ module.exports = {
   },
   module: {
     rules: [
+      { test: /\.svg$/, type: 'asset/inline' },
       {
         test: /\.(ts|tsx)$/,
         exclude: /node_modules/,
