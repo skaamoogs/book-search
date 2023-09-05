@@ -1,13 +1,13 @@
-import styles from "./app.module.scss";
+import styles from './app.module.scss';
 
 const categories = [
-  "all",
-  "art",
-  "biography",
-  "computers",
-  "history",
-  "medical",
-  "poetry",
+  'all',
+  'art',
+  'biography',
+  'computers',
+  'history',
+  'medical',
+  'poetry',
 ];
 
 export const App = () => {

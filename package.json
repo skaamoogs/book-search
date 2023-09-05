@@ -8,19 +8,35 @@
   "license": "MIT",
   "scripts": {
     "start": "webpack serve --port 3000 --open",
-    "build": "set NODE_ENV='production' && webpack"
+    "build": "set NODE_ENV='production' && webpack",
+    "lint": "eslint . --ext js,jsx,ts,tsx && stylelint **/*.scss",
+    "format": "prettier . --write",
+    "prepare": "husky install"
   },
   "devDependencies": {
     "@types/react": "^18.2.21",
     "@types/react-dom": "^18.2.7",
+    "@typescript-eslint/eslint-plugin": "^6.4.0",
     "css-loader": "^6.8.1",
+    "eslint": "^8.0.1",
+    "eslint-config-prettier": "^9.0.0",
+    "eslint-config-standard-with-typescript": "^39.0.0",
+    "eslint-plugin-import": "^2.25.2",
+    "eslint-plugin-n": "^15.0.0 || ^16.0.0 ",
+    "eslint-plugin-promise": "^6.0.0",
+    "eslint-plugin-react": "^7.33.2",
     "html-webpack-plugin": "^5.5.3",
+    "husky": "^8.0.3",
+    "lint-staged": "^14.0.1",
     "mini-css-extract-plugin": "^2.7.6",
+    "prettier": "3.0.3",
     "sass": "^1.66.1",
     "sass-loader": "^13.3.2",
     "style-loader": "^3.3.3",
+    "stylelint": "^15.10.3",
+    "stylelint-config-standard-scss": "^11.0.0",
     "ts-loader": "^9.4.4",
-    "typescript": "^5.2.2",
+    "typescript": "*",
     "typescript-plugin-css-modules": "^5.0.1",
     "webpack": "^5.88.2",
     "webpack-cli": "^5.1.4",
@@ -29,5 +45,10 @@
   "dependencies": {
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
+  },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx}": "eslint",
+    "*.scss": "stylelint",
+    "*.{js,jsx,ts,tsx,scss,md,html,json}": "prettier --write"
   }
 }
