@@ -10,11 +10,21 @@
   color: var.$text-secondary;
 
   &__title {
+    @include var.h1;
+
     margin: 0 0 20px;
   }
 
   &__search {
-    margin-bottom: 15px;
+    @media screen and (width >= 500px) {
+      width: 450px;
+    }
+
+    @media screen and (width < 500px) {
+      width: 95%;
+    }
+
+    margin: 0 auto 15px;
   }
 
   &__filter {

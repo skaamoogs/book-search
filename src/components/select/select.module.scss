@@ -1,7 +1,7 @@
 @use '../../variables' as var;
 
 .selectBlock {
-  @include var.text-medium;
+  @include var.text-large;
 
   color: var.$text-secondary;
 

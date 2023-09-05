@@ -2,11 +2,15 @@
 $text-primary: #000;
 $text-secondary: #fff;
 $text-additional: #616161;
+$text-light: #c1c1c1;
 
 // bacrground colors
 $bg-book: #f3f2f1;
 $bg-main: #fff;
 $bg-header: url('../../images/background.jpg');
+
+// other colors
+$book-shadow: #aaa;
 
 // fonts
 $font-family-default: 'Montserrat', sans-serif;
@@ -17,36 +21,35 @@ $input-radius: 4px;
 // mixins
 @mixin h1 {
   font-family: $font-family-default;
-  font-size: 24px;
+  font-size: 28px;
   font-weight: 600;
+  line-height: normal;
 }
 
 @mixin h2 {
   font-family: $font-family-default;
   font-size: 20px;
   font-weight: 500;
+  line-height: normal;
 }
 
-@mixin text-base {
+@mixin text-large {
   font-family: $font-family-default;
   font-size: 16px;
   font-weight: 400;
+  line-height: normal;
 }
 
 @mixin text-medium {
   font-family: $font-family-default;
-  font-size: 16px;
-  font-weight: 500;
-}
-
-@mixin text-bold {
-  font-family: $font-family-default;
-  font-size: 16px;
-  font-weight: 600;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: normal;
 }
 
 @mixin text-small {
   font-family: $font-family-default;
-  font-size: 13px;
-  font-weight: 300;
+  font-size: 11px;
+  font-weight: 400;
+  line-height: normal;
 }

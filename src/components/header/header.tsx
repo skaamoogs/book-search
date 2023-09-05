@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Input } from '../input/input';
+import { InputSearch } from '../input-search/input-search';
 import { Select } from '../select/select';
 import styles from './header.module.scss';
 
@@ -21,7 +21,7 @@ export const Header = () => {
   return (
     <header className={styles.header}>
       <h1 className={styles.header__title}>Search for books</h1>
-      <Input
+      <InputSearch
         className={styles.header__search}
         name="search"
         value={searchText}

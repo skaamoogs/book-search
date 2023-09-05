@@ -1,0 +1,33 @@
+@use '../../variables' as var;
+
+.card {
+  background-color: var.$bg-book;
+  width: 250px;
+  height: 400px;
+  padding: 30px 15px 15px;
+
+  @include var.text-medium;
+
+  &__cover {
+    margin: 0 auto;
+    display: block;
+    width: 60%;
+    box-shadow: 10px 10px 20px var.$book-shadow;
+  }
+
+  &__category {
+    color: var.$text-light;
+    text-decoration: underline;
+    margin: 32px 0 16px;
+  }
+
+  &__title {
+    font-weight: 700;
+    margin-block: 16px 0;
+  }
+
+  &__author {
+    color: var.$text-light;
+    margin-block: 8px 0;
+  }
+}

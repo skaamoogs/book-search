@@ -1,23 +1,5 @@
-.header {
-  min-width: 320px;
-  background: linear-gradient(rgba(0 0 0 / 0.7), rgba(0 0 0 / 0.7)),
-    url('../../images/background.jpg');
-  background-size: cover;
-  text-align: center;
-  padding-block: 20px;
+@use '../../variables' as var;
 
-  &__title {
-    color: white;
-    margin: 0 0 20px;
-  }
-
-  &__search {
-    margin-bottom: 15px;
-  }
-
-  &__filter {
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-  }
+.main {
+  background-color: var.$bg-main;
 }
