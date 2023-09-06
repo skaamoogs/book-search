@@ -3,10 +3,20 @@ import { InputSearch } from '../input-search/input-search';
 import { Select } from '../select/select';
 import styles from './header.module.scss';
 import { categories, sortingParams } from '../../utils/settings';
+import { type ISearchParams } from '../../utils/google-api';
 
-export const Header = () => {
+interface IHeaderProps {
+  handleSearch: (params: ISearchParams) => void;
+}
+
+export const Header = ({ handleSearch }: IHeaderProps) => {
   const [searchText, setSearchText] = useState('');
   const [category, setCategory] = useState(categories[0]);
+  const [sorting, setSorting] = useState(sortingParams[0]);
+
+  const handleClick = () => {
+    handleSearch({ searchText, category, orderBy: sorting });
+  };
 
   return (
     <header className={styles.header}>
@@ -18,6 +28,7 @@ export const Header = () => {
         handleChange={(e) => {
           setSearchText(e.target.value);
         }}
+        handleClick={handleClick}
       />
       <div className={styles.header__filter}>
         <Select
@@ -29,7 +40,15 @@ export const Header = () => {
             setCategory(e.target.value);
           }}
         />
-        <Select name="sorting" options={sortingParams} label="Sorting by" />
+        <Select
+          name="sorting"
+          value={sorting}
+          options={sortingParams}
+          label="Sorting by"
+          onChange={(e: ChangeEvent<HTMLSelectElement>) => {
+            setSorting(e.target.value);
+          }}
+        />
       </div>
     </header>
   );

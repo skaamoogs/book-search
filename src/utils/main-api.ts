@@ -38,7 +38,7 @@ export class MainAPI {
     return isResponseJson ? await response.json() : await response.text();
   };
 
-  get: HTTPMethod = async (url, options) => {
+  protected get: HTTPMethod = async (url, options) => {
     const queryString = queryStringify(options?.parameters);
     return await this.request(`${url}${queryString}`, {
       ...options,

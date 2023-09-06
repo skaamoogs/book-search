@@ -1,27 +1,32 @@
 import { MainAPI } from './main-api';
-import { API_KEY, API_URL } from './settings';
+import { API_KEY, API_URL, sortingParams } from './settings';
 
-interface RequestParams {
+export interface ISearchParams {
+  searchText: string;
+  category?: string;
   orderBy?: string;
-  startIndex?: number;
-  maxResults?: number;
 }
 
 class GoogleAPI extends MainAPI {
+  protected startIndex = 0;
+  protected maxResults = 30;
+
   constructor() {
     super(API_URL);
   }
 
-  async searchBooks(
-    search: string,
-    category?: string,
-    params: RequestParams = {}
-  ) {
+  async searchBooks({ searchText, category, orderBy }: ISearchParams) {
     const categoryString =
       category && category !== 'all' ? `+subject:${category}` : '';
-    const q = `"${search}"${categoryString}`;
+    const q = `"${searchText}"${categoryString}`;
 
-    const parameters = { q, ...params, key: API_KEY };
+    const parameters = {
+      q,
+      orderBy: orderBy ?? sortingParams[0],
+      startIndex: this.startIndex,
+      maxResults: this.maxResults,
+      key: API_KEY,
+    };
     return await this.get('/volumes', { parameters });
   }
 
