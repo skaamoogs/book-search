@@ -5,3 +5,20 @@ export const cx = (...args: unknown[]) =>
     .filter((x) => typeof x === 'string')
     .join(' ')
     .trim();
+
+export const queryStringify = (
+  parameters?: Record<string, string | number>
+) => {
+  if (!parameters) return '';
+
+  if (typeof parameters !== 'object') {
+    throw new Error('Parameters should be an object');
+  }
+
+  return (
+    '?' +
+    Object.entries(parameters)
+      .map(([key, value]) => `${key}=${value}`)
+      .join('&')
+  );
+};

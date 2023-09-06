@@ -1,22 +1,12 @@
-import { useState } from 'react';
+import { type ChangeEvent, useState } from 'react';
 import { InputSearch } from '../input-search/input-search';
 import { Select } from '../select/select';
 import styles from './header.module.scss';
-
-const categories = [
-  'all',
-  'art',
-  'biography',
-  'computers',
-  'history',
-  'medical',
-  'poetry',
-];
-
-const sortingOptions = ['relevance', 'newest'];
+import { categories, sortingParams } from '../../utils/settings';
 
 export const Header = () => {
   const [searchText, setSearchText] = useState('');
+  const [category, setCategory] = useState(categories[0]);
 
   return (
     <header className={styles.header}>
@@ -30,8 +20,16 @@ export const Header = () => {
         }}
       />
       <div className={styles.header__filter}>
-        <Select name="categories" options={categories} label="Categories" />
-        <Select name="sorting" options={sortingOptions} label="Sorting by" />
+        <Select
+          name="categories"
+          options={categories}
+          label="Categories"
+          value={category}
+          onChange={(e: ChangeEvent<HTMLSelectElement>) => {
+            setCategory(e.target.value);
+          }}
+        />
+        <Select name="sorting" options={sortingParams} label="Sorting by" />
       </div>
     </header>
   );
