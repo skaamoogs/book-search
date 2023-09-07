@@ -2,7 +2,8 @@
 
 .cover {
   box-shadow: var.$book-shadow;
-  width: calc(var.$card-width * 0.55);
+  height: calc(var.$card-height * 0.5);
+  width: fit-content;
 
   &_large {
     width: var.$book-width-large;
@@ -14,11 +15,11 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: calc(var.$book-width-large * 1.5);
+    aspect-ratio: 0.8;
   }
 
   &__img {
-    width: 100%;
+    height: 100%;
   }
 
   &__text {

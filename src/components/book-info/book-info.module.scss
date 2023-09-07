@@ -5,12 +5,13 @@
   height: 100%;
   grid-template-columns: 1fr 2fr;
 
-  @media screen and (width < 700px) {
+  @media screen and (width < 800px) {
     grid-template-columns: 1fr;
   }
 
   &__coverContainer {
     padding: 40px;
+    background-color: var.$bg-book;
   }
 
   &__cover {
@@ -19,7 +20,7 @@
 
   &__info {
     padding: 40px;
-    background-color: var.$bg-main;
+    border-bottom: 1px solid var.$bg-book;
   }
 
   &__categories {
@@ -45,6 +46,6 @@
   &__description {
     @include var.text-large;
 
-    margin-top: 32px;
+    margin-top: 30px;
   }
 }

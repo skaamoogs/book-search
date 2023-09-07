@@ -10,11 +10,18 @@ const enum METHODS {
 interface IOptions {
   method?: METHODS;
   parameters?: Record<string, string | number>;
-  headers?: Record<string, string>;
-  data?: unknown;
+  headers?: Headers;
+  body?: unknown;
 }
 
-type HTTPMethod = (url: string, options?: IOptions) => Promise<unknown>;
+export interface ApiResponse {
+  data: any;
+  status: number;
+  statusText: string;
+  headers: Headers;
+}
+
+type HTTPMethod = (url: string, options?: IOptions) => Promise<ApiResponse>;
 
 export class MainAPI {
   protected endpoint: string;
@@ -24,22 +31,27 @@ export class MainAPI {
   }
 
   private readonly request: HTTPMethod = async (url, options = {}) => {
-    const { method, headers = {}, data } = options;
+    const { method, headers, body } = options;
 
     const response = await fetch(`${this.endpoint}${url}`, {
       method,
       headers,
-      body: JSON.stringify(data),
+      body: JSON.stringify(body),
     });
 
-    const contentType = response.headers.get('Content-Type');
-    const isResponseJson = contentType === 'application/json';
+    const data = await response.json();
 
-    return isResponseJson ? await response.json() : await response.text();
+    return {
+      data,
+      status: response.status,
+      statusText: response.statusText,
+      headers: response.headers,
+    };
   };
 
   protected get: HTTPMethod = async (url, options) => {
     const queryString = queryStringify(options?.parameters);
+
     return await this.request(`${url}${queryString}`, {
       ...options,
       method: METHODS.Get,

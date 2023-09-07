@@ -7,7 +7,7 @@ export interface ISearchParams {
   orderBy?: string;
 }
 
-class GoogleAPI extends MainAPI {
+class BooksAPI extends MainAPI {
   protected startIndex = 0;
   protected maxResults = 30;
 
@@ -15,7 +15,7 @@ class GoogleAPI extends MainAPI {
     super(API_URL);
   }
 
-  async searchBooks({ searchText, category, orderBy }: ISearchParams) {
+  getBooks = async ({ searchText, category, orderBy }: ISearchParams) => {
     const categoryString =
       category && category !== 'all' ? `+subject:${category}` : '';
     const q = `"${searchText}"${categoryString}`;
@@ -28,12 +28,12 @@ class GoogleAPI extends MainAPI {
       key: API_KEY,
     };
     return await this.get('/volumes', { parameters });
-  }
+  };
 
-  async getBookById(id: string) {
+  getBookById = async (id: string) => {
     const parameters = { key: API_KEY };
     return await this.get(`/volumes/${id}`, { parameters });
-  }
+  };
 }
 
-export default new GoogleAPI();
+export default new BooksAPI();

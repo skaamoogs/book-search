@@ -3,19 +3,19 @@ import { InputSearch } from '../input-search/input-search';
 import { Select } from '../select/select';
 import styles from './header.module.scss';
 import { categories, sortingParams } from '../../utils/settings';
-import { type ISearchParams } from '../../utils/google-api';
+import { useDispatch } from 'react-redux';
+import { fetchBooksRequested } from '../../store/books/books.slice';
 
-interface IHeaderProps {
-  handleSearch: (params: ISearchParams) => void;
-}
-
-export const Header = ({ handleSearch }: IHeaderProps) => {
+export const Header = () => {
   const [searchText, setSearchText] = useState('');
   const [category, setCategory] = useState(categories[0]);
   const [sorting, setSorting] = useState(sortingParams[0]);
+  const dispatch = useDispatch();
 
-  const handleClick = () => {
-    handleSearch({ searchText, category, orderBy: sorting });
+  const searchBooks = () => {
+    if (!searchText) return;
+    const params = { searchText, category, orderBy: sorting };
+    dispatch({ type: fetchBooksRequested.type, payload: { params } });
   };
 
   return (
@@ -28,7 +28,7 @@ export const Header = ({ handleSearch }: IHeaderProps) => {
         handleChange={(e) => {
           setSearchText(e.target.value);
         }}
-        handleClick={handleClick}
+        handleSubmit={searchBooks}
       />
       <div className={styles.header__filter}>
         <Select
