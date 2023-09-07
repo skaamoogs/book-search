@@ -1,0 +1,50 @@
+@use '../../variables' as var;
+
+.book {
+  display: grid;
+  height: 100%;
+  grid-template-columns: 1fr 2fr;
+
+  @media screen and (width < 700px) {
+    grid-template-columns: 1fr;
+  }
+
+  &__coverContainer {
+    padding: 40px;
+  }
+
+  &__cover {
+    margin: 0 auto;
+  }
+
+  &__info {
+    padding: 40px;
+    background-color: var.$bg-main;
+  }
+
+  &__categories {
+    @include var.text-medium;
+
+    margin: 0;
+  }
+
+  &__title {
+    @include var.h2;
+
+    margin-block: 30px 10px;
+  }
+
+  &__authors {
+    @include var.text-medium;
+
+    color: var.$text-light;
+    text-decoration: underline;
+    margin: 0;
+  }
+
+  &__description {
+    @include var.text-large;
+
+    margin-top: 32px;
+  }
+}

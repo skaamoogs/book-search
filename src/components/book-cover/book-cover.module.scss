@@ -1,0 +1,27 @@
+@use '../../variables' as var;
+
+.cover {
+  box-shadow: var.$book-shadow;
+  width: calc(var.$card-width * 0.55);
+
+  &_large {
+    width: var.$book-width-large;
+  }
+
+  &_blank {
+    background-color: white;
+    color: var.$text-additional;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: calc(var.$book-width-large * 1.5);
+  }
+
+  &__img {
+    width: 100%;
+  }
+
+  &__text {
+    @include var.text-large;
+  }
+}

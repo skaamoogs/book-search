@@ -2,21 +2,24 @@
 $text-primary: #000;
 $text-secondary: #fff;
 $text-additional: #616161;
-$text-light: #c1c1c1;
+$text-light: #a1a1a1;
 
 // bacrground colors
 $bg-book: #f3f2f1;
 $bg-main: #fff;
 $bg-header: url('../../images/background.jpg');
 
-// other colors
-$book-shadow: #aaa;
-
 // fonts
 $font-family-default: 'Montserrat', sans-serif;
 
+// sizes
+$card-width: 250px;
+$card-height: 400px;
+$book-width-large: 250px;
+
 // other
 $input-radius: 4px;
+$book-shadow: 10px 10px 20px #aaa;
 
 // mixins
 @mixin h1 {
@@ -29,7 +32,7 @@ $input-radius: 4px;
 @mixin h2 {
   font-family: $font-family-default;
   font-size: 20px;
-  font-weight: 500;
+  font-weight: 600;
   line-height: normal;
 }
 
