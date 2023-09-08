@@ -18,7 +18,7 @@ class BooksAPI extends MainAPI {
   getBooks = async ({ searchText, category, orderBy }: ISearchParams) => {
     const categoryString =
       category && category !== 'all' ? `+subject:${category}` : '';
-    const q = `"${searchText}"${categoryString}`;
+    const q = `${searchText}${categoryString}`;
 
     const parameters = {
       q,

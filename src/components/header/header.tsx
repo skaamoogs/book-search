@@ -5,6 +5,7 @@ import styles from './header.module.scss';
 import { categories, sortingParams } from '../../utils/settings';
 import { useDispatch } from 'react-redux';
 import { fetchBooksRequested } from '../../store/books/books.slice';
+import { type FetchBooksAction } from '../../store/books/books.saga';
 
 export const Header = () => {
   const [searchText, setSearchText] = useState('');
@@ -15,7 +16,11 @@ export const Header = () => {
   const searchBooks = () => {
     if (!searchText) return;
     const params = { searchText, category, orderBy: sorting };
-    dispatch({ type: fetchBooksRequested.type, payload: { params } });
+
+    dispatch<FetchBooksAction>({
+      type: fetchBooksRequested.type,
+      payload: { params },
+    });
   };
 
   return (

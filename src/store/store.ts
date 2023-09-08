@@ -3,9 +3,11 @@ import logger from 'redux-logger';
 import createSagaMiddleware from 'redux-saga';
 import { booksReducer } from './books/books.slice';
 import { rootSaga } from './root-saga';
+import { bookReducer } from './book/book.slice';
 
 const rootReducer = combineReducers({
   books: booksReducer,
+  book: bookReducer,
 });
 
 const sagaMiddleWare = createSagaMiddleware();
@@ -24,4 +26,3 @@ export const store = configureStore({
 sagaMiddleWare.run(rootSaga);
 
 export type RootState = ReturnType<typeof store.getState>;
-export type AppDispatch = typeof store.dispatch;

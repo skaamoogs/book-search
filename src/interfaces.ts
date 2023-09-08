@@ -8,3 +8,8 @@ export interface IBook {
     imageLinks?: { thumbnail: string };
   };
 }
+
+export interface IBooks {
+  items?: IBook[];
+  totalItems?: number;
+}

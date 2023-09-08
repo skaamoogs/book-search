@@ -2,7 +2,7 @@
 
 .cover {
   box-shadow: var.$book-shadow;
-  height: calc(var.$card-height * 0.5);
+  height: calc(var.$card-height * 0.45);
   width: fit-content;
 
   &_large {

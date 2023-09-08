@@ -1,13 +1,10 @@
-import { createSlice } from '@reduxjs/toolkit';
-import { type IBook } from '../../interfaces';
+import { type PayloadAction, createSlice } from '@reduxjs/toolkit';
+import type { IBooks } from '../../interfaces';
+import type { IReduxState } from '../interfaces';
 
-interface IBooksState {
-  books: IBook[];
-  loading: boolean;
-  error?: unknown;
-}
+interface IBooksState extends IBooks, IReduxState {}
 
-const initialState: IBooksState = { books: [], loading: false };
+const initialState: IBooksState = { loading: false };
 
 const booksSlice = createSlice({
   name: 'books',
@@ -16,9 +13,10 @@ const booksSlice = createSlice({
     fetchBooksRequested: (state) => {
       state.loading = true;
     },
-    fetchBooksSucceeded: (state, action) => {
+    fetchBooksSucceeded: (state, action: PayloadAction<IBooks>) => {
       state.loading = false;
-      state.books = action.payload;
+      state.items = action.payload.items;
+      state.totalItems = action.payload.totalItems;
     },
     fetchBooksFailed: (state, action) => {
       state.loading = false;
