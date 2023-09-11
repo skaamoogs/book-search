@@ -5,6 +5,7 @@
   width: var.$card-width;
   height: var.$card-height;
   padding: 30px 15px 15px;
+  cursor: pointer;
 
   @include var.text-medium;
 
@@ -21,10 +22,14 @@
   &__title {
     font-weight: 700;
     margin-block: 16px 0;
+
+    @include var.text-overflow(3);
   }
 
   &__authors {
     color: var.$text-light;
     margin-block: 8px 0;
+
+    @include var.text-overflow(3);
   }
 }

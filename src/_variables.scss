@@ -7,7 +7,12 @@ $text-light: #a1a1a1;
 // bacrground colors
 $bg-book: #f3f2f1;
 $bg-main: #fff;
+$bg-button: #0d6efd;
+$bg-button-hover: #0b5ed7;
 $bg-header: url('../../images/background.jpg');
+
+// other
+$loader-color: #616161;
 
 // fonts
 $font-family-default: 'Montserrat', sans-serif;
@@ -16,7 +21,7 @@ $font-family-default: 'Montserrat', sans-serif;
 $card-width: 250px;
 $card-height: 400px;
 $card-gap: 30px;
-$book-width-large: 250px;
+$book-height-large: 350px;
 
 // other
 $input-radius: 4px;
@@ -56,4 +61,11 @@ $book-shadow: 10px 10px 20px #aaa;
   font-size: 11px;
   font-weight: 400;
   line-height: normal;
+}
+
+@mixin text-overflow($lines) {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: $lines;
+  -webkit-box-orient: vertical;
 }

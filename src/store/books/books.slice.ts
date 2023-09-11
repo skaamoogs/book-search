@@ -1,10 +1,14 @@
 import { type PayloadAction, createSlice } from '@reduxjs/toolkit';
 import type { IBooks } from '../../interfaces';
 import type { IReduxState } from '../interfaces';
+import { type ISearchParams } from '../../utils/books-api';
 
-interface IBooksState extends IBooks, IReduxState {}
+interface IBooksState extends IBooks, IReduxState {
+  isNextItems: boolean;
+  lastParams?: ISearchParams;
+}
 
-const initialState: IBooksState = { loading: false };
+const initialState: IBooksState = { loading: false, isNextItems: true };
 
 const booksSlice = createSlice({
   name: 'books',
@@ -13,10 +17,26 @@ const booksSlice = createSlice({
     fetchBooksRequested: (state) => {
       state.loading = true;
     },
-    fetchBooksSucceeded: (state, action: PayloadAction<IBooks>) => {
+    fetchNextBooksSucceeded: (state, action: PayloadAction<IBooks>) => {
       state.loading = false;
-      state.items = action.payload.items;
-      state.totalItems = action.payload.totalItems;
+      const { items } = action.payload;
+      if (items) {
+        state.items?.push(...items);
+        state.isNextItems = true;
+      }
+    },
+    fetchBooksSucceeded: (
+      state,
+      action: PayloadAction<{ books: IBooks; params: ISearchParams }>
+    ) => {
+      state.loading = false;
+      const { books, params } = action.payload;
+      state.items = books.items;
+      if (!books.items) {
+        state.isNextItems = false;
+      }
+      state.totalItems = books.totalItems;
+      state.lastParams = params;
     },
     fetchBooksFailed: (state, action) => {
       state.loading = false;
@@ -25,7 +45,11 @@ const booksSlice = createSlice({
   },
 });
 
-export const { fetchBooksRequested, fetchBooksSucceeded, fetchBooksFailed } =
-  booksSlice.actions;
+export const {
+  fetchBooksRequested,
+  fetchBooksSucceeded,
+  fetchNextBooksSucceeded,
+  fetchBooksFailed,
+} = booksSlice.actions;
 
 export const booksReducer = booksSlice.reducer;

@@ -8,14 +8,16 @@ export interface ISearchParams {
 }
 
 class BooksAPI extends MainAPI {
-  protected startIndex = 0;
   protected maxResults = 30;
 
   constructor() {
     super(API_URL);
   }
 
-  getBooks = async ({ searchText, category, orderBy }: ISearchParams) => {
+  getBooks = async (
+    { searchText, category, orderBy }: ISearchParams,
+    step = 0
+  ) => {
     const categoryString =
       category && category !== 'all' ? `+subject:${category}` : '';
     const q = `${searchText}${categoryString}`;
@@ -23,7 +25,7 @@ class BooksAPI extends MainAPI {
     const parameters = {
       q,
       orderBy: orderBy ?? sortingParams[0],
-      startIndex: this.startIndex,
+      startIndex: step * this.maxResults,
       maxResults: this.maxResults,
       key: API_KEY,
     };

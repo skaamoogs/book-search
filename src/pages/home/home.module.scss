@@ -1,6 +1,8 @@
 @use '../../variables' as var;
 
 .section {
+  text-align: center;
+
   &__books {
     display: grid;
 
@@ -39,5 +41,22 @@
 
     font-weight: 600;
     text-align: center;
+  }
+
+  &__button {
+    padding: 10px 20px;
+    margin-bottom: 20px;
+    background-color: var.$bg-button;
+    transition: color 0.15s;
+    border-radius: 5px;
+    color: var.$text-secondary;
+    border: none;
+    cursor: pointer;
+
+    @include var.text-medium;
+
+    &:hover {
+      background-color: var.$bg-button-hover;
+    }
   }
 }

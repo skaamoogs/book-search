@@ -6,12 +6,14 @@ import { categories, sortingParams } from '../../utils/settings';
 import { useDispatch } from 'react-redux';
 import { fetchBooksRequested } from '../../store/books/books.slice';
 import { type FetchBooksAction } from '../../store/books/books.saga';
+import { useNavigate } from 'react-router-dom';
 
 export const Header = () => {
   const [searchText, setSearchText] = useState('');
   const [category, setCategory] = useState(categories[0]);
   const [sorting, setSorting] = useState(sortingParams[0]);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const searchBooks = () => {
     if (!searchText) return;
@@ -21,6 +23,8 @@ export const Header = () => {
       type: fetchBooksRequested.type,
       payload: { params },
     });
+
+    navigate('/');
   };
 
   return (
